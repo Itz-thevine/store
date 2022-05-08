@@ -4,11 +4,11 @@ import { ServiceData } from './ServiceData'
 
 const Service = () => {
   return (
-    <div className='px-36 py-24 flex gap-x-12 flex-wrap gap-y-12 justify-center items-center '>
+    <div className='px-36 py-24 flex flex-wrap justify-center items-center '>
         {
             ServiceData.map((service, i) => (
                 <div key={i}>
-                    <div className='bg-mainColorOne p-10 w-80 flex justify-center items-center flex-col'>
+                    <div className='bg-mainColorOne my-10 lg:mx-3 p-10 w-80 flex justify-center items-center flex-col'>
                         <div className='text-6xl text-mainColorTwo h-16 w-16 flex justify-center items-center'>
                             {
                                 service.id === 1 && <FaIcons.FaDolly/>
