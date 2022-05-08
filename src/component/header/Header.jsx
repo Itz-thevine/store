@@ -24,20 +24,20 @@ const Header = () => {
             <div className='text-mainColorTwo text-2xl pl-9 flex items-center font-black flex-1'>
                 Store
             </div>
-            <div className='flex flex-1 gap-x-10 font-medium justify-end items-center hidden lg:flex'>
-              <div className='flex text-white justify-center text-2xl items-center'><AiIcons.AiOutlineSearch/></div>
-              <div className='flex text-white justify-center text-2xl items-center'><AiIcons.AiOutlineHeart/></div>
-              <div className='flex text-white justify-center items-center text-2xl'><AiIcons.AiOutlineShoppingCart/></div>
+            <div className='flex flex-1 font-medium justify-end items-center hidden lg:flex'>
+              <div className='flex text-white justify-center text-2xl items-center mx-4'><AiIcons.AiOutlineSearch/></div>
+              <div className='flex text-white justify-center text-2xl items-center mx-4'><AiIcons.AiOutlineHeart/></div>
+              <div className='flex text-white justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
               <Button title='Log In'/>
             </div>
 
         </div>
         {
                 nav && (
-                    <div className='bg-mainColorThree flex justify-center h-16 item-center gap-x-8 items-center font-bold' style={{visibility: nav}}>
-                        <Link className='flex justify-center items-center' to='/taskfive'>Home</Link>
-                        <Link className='flex justify-center items-center'  to='/About'>About</Link>
-                        <Link className='flex justify-center items-center'  to='/Contact'>Contact</Link>
+                    <div className='bg-mainColorThree flex justify-center h-16 item-center  items-center font-bold' style={{visibility: nav}}>
+                        <Link className='flex justify-center items-center mx-4' to='/taskfive'>Home</Link>
+                        <Link className='flex justify-center items-center mx-4'  to='/About'>About</Link>
+                        <Link className='flex justify-center items-center mx-4'  to='/Contact'>Contact</Link>
                     </div>
                 )
             }

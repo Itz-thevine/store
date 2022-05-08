@@ -38,8 +38,8 @@ const Home = () => {
               <p style={{wordWrap: 'break-word', overflow: 'hidden', maxHeight: '3.6em', lineHeight:'1.2em'}}>{data.description}</p>
             </div>
 
-            <div className='flex gap-x-16 mt-14'>
-              <div className=''>
+            <div className='flex mt-14'>
+              <div className='mr-14'>
                 <p className='text-sm text-neutral-500'>Price</p>
                 <p>${data.price}</p>
               </div>
@@ -49,10 +49,10 @@ const Home = () => {
               </div>
             </div>
 
-            <div className='flex mt-7 gap-x-10'>
+            <div className='flex mt-7'>
               <Button title='Shop Now'/>
-              <div className='flex text-mainColorOne justify-center text-2xl items-center'><AiIcons.AiOutlineHeart/></div>
-              <div className='flex text-mainColorOne justify-center items-center text-2xl'><AiIcons.AiOutlineShoppingCart/></div>
+              <div className='flex text-mainColorOne justify-center text-2xl items-center mx-4'><AiIcons.AiOutlineHeart/></div>
+              <div className='flex text-mainColorOne justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
             </div>
 
           </div>
