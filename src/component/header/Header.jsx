@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as AiIcons from 'react-icons/ai'
+import Button from '../button/Button';
 
 const Header = () => {
-    const [nav, setNav] = useState(false);
+    const [nav, setNav] = useState('visible');
 
     const close = () =>{
-        setNav(true)
+        setNav('hidden')
 
-        if(nav){
-            setNav(false)
+        if(nav === 'hidden'){
+            setNav('visible')
         }
     }
-
 
   return (
      <>
@@ -22,19 +22,19 @@ const Header = () => {
             </div>
            
             <div className='text-mainColorTwo text-2xl pl-9 flex items-center font-black flex-1'>
-                Clothe
+                Store
             </div>
-            <div className=' flex flex-1 gap-x-10 font-medium justify-end items-center invisible lg:visible'>
+            <div className='flex flex-1 gap-x-10 font-medium justify-end items-center hidden lg:flex'>
               <div className='flex text-white justify-center text-2xl items-center'><AiIcons.AiOutlineSearch/></div>
               <div className='flex text-white justify-center text-2xl items-center'><AiIcons.AiOutlineHeart/></div>
               <div className='flex text-white justify-center items-center text-2xl'><AiIcons.AiOutlineShoppingCart/></div>
-              <div className='flex bg-mainColorTwo h-11 w-24 justify-center items-center'>Login</div>
+              <Button title='Log In'/>
             </div>
 
         </div>
         {
                 nav && (
-                    <div className='bg-mainColorThree flex justify-center item-center gap-x-8 py-4 font-bold'>
+                    <div className='bg-mainColorThree flex justify-center h-16 item-center gap-x-8 items-center font-bold' style={{visibility: nav}}>
                         <Link className='flex justify-center items-center' to='/'>Home</Link>
                         <Link className='flex justify-center items-center'  to='/About'>About</Link>
                         <Link className='flex justify-center items-center'  to='/Contact'>Contact</Link>

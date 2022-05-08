@@ -10,7 +10,11 @@ module.exports = {
         mainColorThree: '#4DAE5F',
       },
       height: {
-        banner:   `calc(100vh - 7rem)`
+        banner:   `calc(100vh - 11rem)`,
+        im:'24rem'
+      },
+      width: {
+        im: '24rem'
       }
     },
   },
