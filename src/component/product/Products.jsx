@@ -177,7 +177,7 @@ const Products = () => {
                 {
                     value === 'electronics' && (
                         elect.map(i => (
-                            <div key={i.id} className="w-full w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
+                            <div key={i.id} className="w-full my-10 lg:mx-3 w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
                                 <img src={i.image} alt="Hand holding black machined steel mechanical pencil with brass tip and top." className="w-80 h-72 object-center object-contain group-hover:opacity-75"/>
                                 <div className='px-4 text-mainColorOne'>
                                     <h3 className="mt-4  text-2xl font-bold ">{i.title}</h3>
@@ -200,7 +200,7 @@ const Products = () => {
                 {
                      value === 'jewelery' && (
                         jew.map(i => (
-                            <div key={i.id} className="w-full w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
+                            <div key={i.id} className="w-full my-10 lg:mx-3 w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
                                 <img src={i.image} alt="Hand holding black machined steel mechanical pencil with brass tip and top." className="w-80 h-72 object-center object-contain group-hover:opacity-75"/>
                                 <div className='px-4 text-mainColorOne'>
                                     <h3 className="mt-4  text-2xl font-bold ">{i.title}</h3>
@@ -223,7 +223,7 @@ const Products = () => {
                 {
                     value === 'male' && (
                         male.map(i => (
-                            <div key={i.id} className="w-full w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
+                            <div key={i.id} className="w-full my-10 lg:mx-3 w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
                                 <img src={i.image} alt="Hand holding black machined steel mechanical pencil with brass tip and top." className="w-80 h-72 object-center object-contain group-hover:opacity-75"/>
                                 <div className='px-4 text-mainColorOne'>
                                     <h3 className="mt-4  text-2xl font-bold ">{i.title}</h3>
@@ -246,7 +246,7 @@ const Products = () => {
                 {
                     value === 'female' && (
                         female.map(i => (
-                            <div key={i.id} className="w-full w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
+                            <div key={i.id} className="w-full my-10 lg:mx-3 w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
                                 <img src={i.image} alt="Hand holding black machined steel mechanical pencil with brass tip and top." className="w-80 h-72 object-center object-contain group-hover:opacity-75"/>
                                 <div className='px-4 text-mainColorOne'>
                                     <h3 className="mt-4  text-2xl font-bold ">{i.title}</h3>
