@@ -35,7 +35,7 @@ const Header = () => {
         {
                 nav && (
                     <div className='bg-mainColorThree flex justify-center h-16 item-center  items-center font-bold' style={{visibility: nav}}>
-                        <Link className='flex justify-center items-center mx-4' to='/taskfive'>Home</Link>
+                        <Link className='flex justify-center items-center mx-4' to='/store'>Home</Link>
                         <Link className='flex justify-center items-center mx-4'  to='/About'>About</Link>
                         <Link className='flex justify-center items-center mx-4'  to='/Contact'>Contact</Link>
                     </div>
