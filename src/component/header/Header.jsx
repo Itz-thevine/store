@@ -27,8 +27,12 @@ const Header = () => {
             <div className='flex flex-1 font-medium justify-end items-center hidden lg:flex'>
               <div className='flex text-white justify-center text-2xl items-center mx-4'><AiIcons.AiOutlineSearch/></div>
               <div className='flex text-white justify-center text-2xl items-center mx-4'><AiIcons.AiOutlineHeart/></div>
+              <Link to='/cart'>
               <div className='flex text-white justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
-              <Button title='Log In'/>
+              </Link>
+            <Link to='/login'>
+                <Button title='Log In'/>
+            </Link> 
             </div>
 
         </div>

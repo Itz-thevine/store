@@ -28,7 +28,7 @@ const Home = () => {
     
   return (
     <div>
-       <div className="bg-white h-auto py-14 flex justify-center items-center px-14 md:px-36 flex-wrap ">
+       <div className="bg-white h-banner py-14 flex justify-center items-center px-14 md:px-36 flex-wrap ">
           <div className='text-mainColorOne flex flex-1 flex-col pb-7'>
 
             <div className=''>
