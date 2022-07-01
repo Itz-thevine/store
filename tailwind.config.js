@@ -15,7 +15,8 @@ module.exports = {
       },
       width: {
         im: '24rem'
-      }
+      },
+      
     },
   },
   plugins: [],

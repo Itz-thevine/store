@@ -28,7 +28,7 @@ const Home = () => {
     
   return (
     <div>
-       <div className="bg-white h-banner py-14 flex justify-center items-center px-14 md:px-36 flex-wrap ">
+       <div className="bg-white h-auto py-14 flex justify-center items-center px-14 md:px-36 flex-wrap ">
           <div className='text-mainColorOne flex flex-1 flex-col pb-7'>
 
             <div className=''>
@@ -51,7 +51,6 @@ const Home = () => {
 
             <div className='flex mt-7'>
               <Button title='Shop Now'/>
-              <div className='flex text-mainColorOne justify-center text-2xl items-center mx-4'><AiIcons.AiOutlineHeart/></div>
               <div className='flex text-mainColorOne justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
             </div>
 

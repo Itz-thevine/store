@@ -21,27 +21,42 @@ const Header = () => {
                     <AiIcons.AiOutlineMenu/>
             </div>
            
-            <div className='text-mainColorTwo text-2xl pl-9 flex items-center font-black flex-1'>
+            <div className='text-mainColorTwo text-2xl pl-9 flex items-center font-black w-3/12'>
                 Store
             </div>
-            <div className='flex flex-1 font-medium justify-end items-center hidden lg:flex'>
-              <div className='flex text-white justify-center text-2xl items-center mx-4'><AiIcons.AiOutlineSearch/></div>
-              <div className='flex text-white justify-center text-2xl items-center mx-4'><AiIcons.AiOutlineHeart/></div>
-              <Link to='/cart'>
-              <div className='flex text-white justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
-              </Link>
-            <Link to='/login'>
-                <Button title='Log In'/>
-            </Link> 
+            <div className='w-6/12 flex justify-around items-center hidden md:flex'>
+              <Link className='flex justify-center items-center text-white mx-7' to='/'>Home</Link>
+              <Link className='flex justify-center items-center text-white mx-7'  to='/About'>About</Link>
+              <Link className='flex justify-center items-center text-white mx-7 mr-28'  to='/Contact'>Contact</Link>
+            </div>
+            <div className='flex  font-medium justify-end items-center hidden lg:flex w-4/12'>
+              
+                <Link to='/cart'>
+                    <div className='flex text-white justify-center items-center text-2xl mx-7'><AiIcons.AiOutlineShoppingCart/></div>
+                </Link>
+                <Link to='/login'>
+                    <Button title='Log In'/>
+                </Link> 
             </div>
 
         </div>
         {
                 nav && (
-                    <div className='bg-mainColorThree flex justify-center h-16 item-center  items-center font-bold' style={{visibility: nav}}>
-                        <Link className='flex justify-center items-center mx-4' to='/'>Home</Link>
-                        <Link className='flex justify-center items-center mx-4'  to='/About'>About</Link>
-                        <Link className='flex justify-center items-center mx-4'  to='/Contact'>Contact</Link>
+                    <div className='bg-mainColorThree px-10 flex justify-between h-16 item-center  items-center font-bold' style={{visibility: nav}}>
+                       <div className=' justify-around items-center flex md:hidden'>
+                            <Link className='flex justify-center items-center text-white mr-5' to='/'>Home</Link>
+                            <Link className='flex justify-center items-center text-white mx-5'  to='/About'>About</Link>
+                            <Link className='flex justify-center items-center text-white mx-5'  to='/Contact'>Contact</Link>
+                        </div>
+                        <div className='flex  font-medium justify-end items-center md:hidden flex '>
+                        
+                            <Link to='/cart'>
+                                <div className='flex text-white justify-center items-center text-2xl mx-7'><AiIcons.AiOutlineShoppingCart/></div>
+                            </Link>
+                            <Link to='/login'>
+                                <Button title='Log In'/>
+                            </Link> 
+                        </div>
                     </div>
                 )
             }

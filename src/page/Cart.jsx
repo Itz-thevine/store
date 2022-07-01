@@ -4,7 +4,7 @@ import ShopCart from '../component/shopCart/ShopCart'
 
 const Cart = () => {
   return (
-    <div className='flex'>
+    <div className='flex flex-wrap lg:flex-nowrap'>
         <div className='flex-auto w-4/5 px-12'>
             <p className='text-2xl font-bold mt-5'>Shop Cart</p>
             <hr className='w-full h-1 my-5'/>
