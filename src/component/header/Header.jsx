@@ -44,14 +44,14 @@ const Header = () => {
                 nav && (
                     <div className='bg-mainColorThree px-10 flex justify-between h-16 item-center  items-center font-bold' style={{visibility: nav}}>
                        <div className=' justify-around items-center flex md:hidden'>
-                            <Link className='flex justify-center items-center text-white mr-5' to='/'>Home</Link>
-                            <Link className='flex justify-center items-center text-white mx-5'  to='/About'>About</Link>
-                            <Link className='flex justify-center items-center text-white mx-5'  to='/Contact'>Contact</Link>
+                            <Link className='flex justify-center items-center text-white mr-3' to='/'>Home</Link>
+                            <Link className='flex justify-center items-center text-white mx-3'  to='/About'>About</Link>
+                            <Link className='flex justify-center items-center text-white mx-3'  to='/Contact'>Contact</Link>
                         </div>
                         <div className='flex  font-medium justify-end items-center md:hidden flex '>
                         
                             <Link to='/cart'>
-                                <div className='flex text-white justify-center items-center text-2xl mx-7'><AiIcons.AiOutlineShoppingCart/></div>
+                                <div className='flex text-white justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
                             </Link>
                             <Link to='/login'>
                                 <Button title='Log In'/>

@@ -3,6 +3,7 @@ import * as GiIcons from 'react-icons/gi'
 import * as BiIcons from 'react-icons/bi'
 import * as AiIcons from 'react-icons/ai'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Products = () => {
     const [value, setValue] = useState('products');
@@ -95,7 +96,7 @@ const Products = () => {
     var displayWorks = []
     for(var i = lowest() ; i < highest(); i++){
         displayWorks.push(
-            <div key={i} className="w-full my-10 lg:mx-3 w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
+            <Link to={`/${getAll[i].id}`} key={i} className="w-full my-10 lg:mx-3 w-80 h-auto shadow-2xl bg-white rounded-lg rounded-none pt-2 pb-3">
                 <img src={getAll[i].image} alt="Hand holding black machined steel mechanical pencil with brass tip and top." className="w-80 h-72 object-center object-contain group-hover:opacity-75"/>
                 <div className='px-4 text-mainColorOne'>
                     <h3 className="mt-4  text-2xl font-bold ">{getAll[i].title}</h3>
@@ -110,7 +111,7 @@ const Products = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Link>
         // console.log(worksArray[i].title)
         )
 
@@ -183,7 +184,7 @@ const Products = () => {
        </div>
 
         <div className='flex justify-center items-center '>
-            <div className='mt-14 text-center w-auto flex flex-wrap pb-14 justify-center  md:justify-between'>
+            <div className='mt-14 w-auto flex flex-wrap pb-14 justify-center  md:justify-between'>
                 {/* api display */}
                     {
                     
