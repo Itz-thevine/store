@@ -3,12 +3,20 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Button from '../component/button/Button'
+import { addProducts } from '../redux/productSlice'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
+
 
 const SingleProduct = () => {
     let {id} = useParams()
     const name = id
+    const navigate = useNavigate();
 
     const[pagedata, setPagedata] = useState([])
+    const[size, setSize] = useState(1)
+    const[quantity, setQuantity] = useState(1)
+    
 
     useEffect(() => {
         axios.get(`https://fakestoreapi.com/products/${name}`).then(
@@ -17,8 +25,26 @@ const SingleProduct = () => {
             }
         )
     }, [])
+
+
+    let price =  pagedata.price
+    price = price + size
+    console.log(price)
+
+    const dispatch = useDispatch();
+    const handleClick = () => {
+        setQuantity(1)
+        dispatch(addProducts({...pagedata, price, quantity }))
+        navigate('/cart')
+    }
+
+    const handleSize = (i) => {
+        setSize(i)
+    }
     
-    console.log(pagedata)
+    
+
+    
 
   return (
     <div className='flex flex-col md:flex-row flex-wrap items-center py-10 md:px-24'>
@@ -28,7 +54,7 @@ const SingleProduct = () => {
         <div className='flex flex-auto flex-col w-9/12 md:w-8/12 md:pl-8'>
             <p className='text-2xl font-bold'>{pagedata.title}</p>
             <p className='text-lg font-bold text-slate-500 mb-7'>{pagedata.category}</p>
-            <p className='text-2xl font-bold text-mainColorTwo'>${pagedata.price}</p>
+            <p className='text-2xl font-bold text-mainColorTwo'>${pagedata.price + size }</p>
             <div>
                 <p className='text-lg font-bold text-slate-500 mt-3'>Description</p>
                 <hr className='w-full bg-slate-500 my-2' />
@@ -37,13 +63,13 @@ const SingleProduct = () => {
             <div className=' flex pt-4 pb-7'>
                 <p className='font-bold text-slate-500'>Size:</p>
                 <div className='flex'>
-                    <p className='mx-5'>SM</p>
-                    <p className='mx-5 border-2 px-2'>MD</p>
-                    <p className='mx-5'>LG</p>
-                    <p className='mx-5'>XL</p>
+                    <p className={size === 1 ? 'mx-5 cursor-pointer border-2 px-2': 'mx-5 cursor-pointer' } onClick={() => handleSize(1)}>SM</p>
+                    <p className={size === 2 ? 'mx-5 cursor-pointer border-2 px-2': 'mx-5 cursor-pointer' } onClick={() => handleSize(2)}>MD</p>
+                    <p className={size === 3 ? 'mx-5 cursor-pointer border-2 px-2': 'mx-5 cursor-pointer' } onClick={() => handleSize(3)}>LG</p>
+                    <p className={size === 4 ? 'mx-5 cursor-pointer border-2 px-2': 'mx-5 cursor-pointer' } onClick={() => handleSize(4)}>XL</p>
                 </div>
             </div>
-            <Button title='Add to Cart'/>
+            <Button clickFunc={handleClick} title='Add to Cart'/>
         </div>
     </div>
   )

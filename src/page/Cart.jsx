@@ -1,8 +1,12 @@
 import React from 'react'
 import * as MdIcons from 'react-icons/md'
 import ShopCart from '../component/shopCart/ShopCart'
+import { useSelector, useDispatch } from 'react-redux/es/exports'
 
 const Cart = () => {
+    const cart = useSelector(state=> state.products)
+    const cartObject = cart.products
+    const cartPrice = cart.price
   return (
     <div className='flex flex-wrap lg:flex-nowrap'>
         <div className='flex-auto w-4/5 px-12'>
