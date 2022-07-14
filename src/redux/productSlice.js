@@ -4,26 +4,22 @@ export const productSlice = createSlice({
     name:"cart",
     initialState:{
         products: [],
-        quantity: [],
-        total: 0,
+        quantity: '',
+        total: '',
         price: [],
     },
     reducers:{
         addProducts: (state, action) => {
            state.products.push(action.payload)
            state.price.push(action.payload.price)
-           state.quantity.push(action.payload.quantity)
+           
         },
-        increCart:(state, action)=>{
-            for (let index = 0; index < state.quantity; index++) {
-                if (state.quantity[index] === action.payload.ind) {
-                  state.quantity[index] = state.quantity[index + 1];
-                  break;
-                }
-              }
+        increQuantity: (state, action)=>{
+            state.quantity = action.payload.quantity;
+            state.total = action.payload.total
         }
     }
 })
 
-export const {addProducts} = productSlice.actions;
+export const {addProducts, increQuantity} = productSlice.actions;
 export default productSlice.reducer

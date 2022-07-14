@@ -15,7 +15,6 @@ const SingleProduct = () => {
 
     const[pagedata, setPagedata] = useState([])
     const[size, setSize] = useState(1)
-    const[quantity, setQuantity] = useState(1)
     
 
     useEffect(() => {
@@ -33,8 +32,7 @@ const SingleProduct = () => {
 
     const dispatch = useDispatch();
     const handleClick = () => {
-        setQuantity(1)
-        dispatch(addProducts({...pagedata, price, quantity }))
+        dispatch(addProducts({...pagedata, price}))
         navigate('/cart')
     }
 

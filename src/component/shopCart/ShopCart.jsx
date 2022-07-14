@@ -1,34 +1,83 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import * as AiIcons from 'react-icons/ai'
 import { useSelector, useDispatch } from 'react-redux/es/exports'
-import { addProducts } from '../../redux/productSlice'
+import { increQuantity } from '../../redux/productSlice'
+
 
 const ShopCart = () => {
-    const cart = useSelector(state=> state.products)
+    const cart = useSelector(state=> state.products) || ''
     const cartObject = cart.products
     const cartPrice = cart.price
-    const cartQuantity = cart.quantity
-    console.log(cartQuantity)
 
-    // const[quantity, setQuantity] = useState([])
-
-    // console.log(quantity)
-
-
-    const [quantity, setQuantity] = useState(cartQuantity)
-    
 
     const dispatch = useDispatch();
-    const redc = (i) => {
-
-        setQuantity(quantity[i] - 1)
-        console.log('qun' + quantity) 
-        // quantity[i] = quantity[i] -1
-        // dispatch(addProducts({ quantity }))
+    
+    // create an array using the length of the array
+    const total = []
+    const valueArray = []
+    for (let index = 0; index < cart.products.length; index++) {
+        valueArray.push(1);
+        total.push(0)
     }
 
-    console.log('quan:' + quantity)
+    // 
+
+    const[quantity, setQuantity] = useState(valueArray)
+    
+    // get the array of the total prices
+    
+
+    for (let i = 0; i < quantity.length; i++) {
+        let dPrice = cartPrice[i] * quantity[i]
+        total[i] = dPrice;
+    }
+
+    
+
+
+    useEffect(() => {
+        dispatch(increQuantity({...cart, quantity, total}))
+     
+    }, [quantity])
+    
+
+
+    const redc = (i) => {
+        let temp_state = [...quantity];
+        let temp_element =  temp_state[i] ;
+        // temp_element.counter = temp_element.counter+1;
+        let valuer = ''
+        if (temp_element === 0) {
+            valuer = 0
+        }else{
+            valuer = temp_element -1
+        }
+        
+        temp_state[i] = parseInt(valuer)
+
+        setQuantity(temp_state);
+
+        // dispatch(increQuantity({...cart, quantity}))
+
+    }
+
+
+    
+    const incr = (i) => {
+        let temp_state = [...quantity];
+        let temp_element =  temp_state[i] ;
+        let valuer = temp_element + 1
+        
+        temp_state[i] = parseInt(valuer)
+
+        setQuantity(temp_state);
+
+        // dispatch(increQuantity({...cart, quantity}))
+
+    }
+
 
   return (
     <div className='w-full'>
@@ -63,14 +112,14 @@ const ShopCart = () => {
                             <div className='flex'>
                                 <AiIcons.AiOutlineMinus onClick={()=> redc(i)}/>
                             </div>
-                            <input type="number" value={quantity[i]} className='border-2 my-3 md:my-0 outline-none appearance-none text-center focus:border-green-500 focus:outline-none w-10 mx-3' />
+                            <input type="number" readOnly value={quantity[i]} className='border-2 my-3 md:my-0 outline-none appearance-none text-center focus:outline-none w-10 mx-3' />
                             <div>
-                                <AiIcons.AiOutlinePlus/>
+                                <AiIcons.AiOutlinePlus onClick={() => incr(i)}/>
                             </div>
                         </div>
                     </td>
                     <td>${cartPrice[i]}</td>
-                    <td>$200.42</td>
+                    <td>${cartPrice[i] * quantity[i]}</td>
                 </tr>
                 ))}
             </tbody>
