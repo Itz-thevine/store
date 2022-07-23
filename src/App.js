@@ -8,6 +8,7 @@ import Login from './page/Login';
 import SignUp from './page/SignUp';
 import Cart from './page/Cart';
 import SingleProduct from './page/SingleProduct';
+import Signed from './page/Signed';
 
 function App() {
   return (
@@ -15,12 +16,17 @@ function App() {
      <Header/>
      <Routes>
        <Route path='/' exact element={<Home/>} />
-       <Route path='/contact' element={<Contact/>}></Route>
-       <Route path='/login' element={<Login/>}></Route>
-       <Route path='/signup' element={<SignUp/>}></Route>
-       <Route path='/about' element={<About/>}></Route>
-       <Route path='/cart' element={<Cart/>}></Route>
-       <Route path='/:id' element={<SingleProduct/>}></Route>
+       <Route path='/:id' exact element={<SingleProduct/>}/>
+       <Route path='/contact' element={<Contact/>}/>
+       <Route path='/login' element={<Login/>}/>
+       <Route path='/signup' element={<SignUp/>}/>
+       <Route path='/about' element={<About/>}/>
+       
+       <Route path='/cart' element={<Signed/>}>
+        <Route path='' element={<Cart/>}/>
+        
+       </Route>
+
      </Routes>
     </div>
   );

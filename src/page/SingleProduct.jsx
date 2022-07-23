@@ -12,6 +12,7 @@ const SingleProduct = () => {
     let {id} = useParams()
     const name = id
     const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem('user_id'));
 
     const[pagedata, setPagedata] = useState([])
     const[size, setSize] = useState(1)
@@ -32,8 +33,12 @@ const SingleProduct = () => {
 
     const dispatch = useDispatch();
     const handleClick = () => {
-        dispatch(addProducts({...pagedata, price}))
-        navigate('/cart')
+        if (user !== null) {
+            dispatch(addProducts({...pagedata, price}))
+            navigate('/cart')
+        } else {
+            navigate('/login')            
+        }
     }
 
     const handleSize = (i) => {

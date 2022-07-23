@@ -7,6 +7,7 @@ import Service from '../component/services/Services';
 import StayWithUs from '../component/stayWithUs/StayWithUs';
 import Button from '../component/button/Button';
 import Footer from '../component/footer/Footer';
+import { Link } from 'react-router-dom';
 
 
 const Home = () => {
@@ -49,9 +50,11 @@ const Home = () => {
               </div>
             </div>
 
-            <div className='flex mt-7'>
+            <div className='flex mt-7 items-center'>
               <Button title='Shop Now'/>
-              <div className='flex text-mainColorOne justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
+              <Link to='/cart'>
+                <div className='flex text-mainColorOne justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
+              </Link>
             </div>
 
           </div>

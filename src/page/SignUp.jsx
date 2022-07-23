@@ -1,23 +1,38 @@
 import React from 'react'
 import { useState } from 'react'
 import * as AiIcons from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik } from 'formik'
+import auth from '../firebase'
+import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 
 const SignUp = () => {
-    let success = 'px-3 focus:outline-none focus:border-green-400 border-2 w-96 h-10 '
+    let success = 'px-3 focus:outline-none focus:border-green-400 border-2 w-96 h-10 pr-16'
     let haveError = 'px-3 focus:outline-none border-red-400 border-2 w-96 h-10 '
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
 
-    const changeEmail = (email) => {
-        setEmail(email)       
-        // console.log(email) 
+    // redirection
+    const navigate = useNavigate()
+    
+    // firebase error message 
+    const [errMsg ,setErrMsg] = useState(null)
+
+    
+    // toggle password visibility
+    const [passwordType, setPasswordType] = useState("password");
+    
+    const togglePassword =(e)=>{
+        e.preventDefault()
+    if(passwordType==="password")
+    {
+    setPasswordType("text")
+    return;
     }
-    const changePassword = (password) => {
-        setPassword(password) 
-        // console.log(password) 
+    setPasswordType("password")
     }
+ 
+    auth.onAuthStateChanged(user=>{
+        localStorage.setItem('user_id', JSON.stringify(user))
+    })
 
   return (
     <div>
@@ -25,17 +40,13 @@ const SignUp = () => {
         <div>
             <p className='font-bold text-2xl mb-5 text-center'>Sign Up</p>
             <div className='flex justify-center md:justify-end'>
-                <div className='bg-red-500 w-96 mb-5 py-2 px-3 text-white flex justify-between'>
-                    <p>Error</p>
-                    <div className='flex justify-center items-center'><AiIcons.AiOutlineClose/></div>
-                </div>
+                {errMsg && (<div className='bg-red-500 w-96 mb-5 py-2 px-3 text-white flex justify-between'>
+                    <p>{errMsg}</p>
+                    <div className='flex justify-center items-center' ><AiIcons.AiOutlineClose onClick={()=>setErrMsg(false)} className='cursor-pointer'/></div>
+                </div>)}
             </div>
             <div className='flex'>
-                {/* image */}
-                <label htmlFor=""></label>
-
-                {/* <div className='flex-auto w-56 bg-black mr-5'>
-                </div> */}
+                
                 <Formik
                     initialValues={{ 
                      email: '',
@@ -65,7 +76,15 @@ const SignUp = () => {
                         setTimeout(() => {
                             let authVal = JSON.stringify(values, null, 2);
                             
-                            
+                            createUserWithEmailAndPassword(auth, values.email, values.password).then((res)=>{
+                                navigate('/')
+                            }).catch((err)=>{
+                                let dError = JSON.stringify(err);
+                                let getError = JSON.parse(dError).code 
+                                let value = getError.replace(/-/g, " ");
+                                let mainErr = value.replace("auth/", '')
+                                setErrMsg(mainErr.charAt(0).toUpperCase() + mainErr.slice(1))
+                            })
           
                             setSubmitting(false);
                           }, 400);
@@ -98,22 +117,27 @@ const SignUp = () => {
                                 <div>
                                     <label >
                                     <p>Email</p>
-                                    <input type='email' name="email" onChange={(e)=>changeEmail(e.target.value), handleChange} value={values.email} onBlur={ handleBlur} className={!errors.email ? success : haveError}/>
-                                    {/* <input type='email' name="email" onChange={handleChange}  value={values.email} className={!errors.email ? success : haveError}/> */}
-                                    {/* <input type="email"  name="email" value={values.email} onChange={(e)=>changeEmail(e.target.value)} className={!errors.email ? success : haveError}/> */}
-                                    <p className='mb-4 text-right text-red-400 italic text-sm'>{touched.email && errors.email}</p>
+                                    <input type='email' name="email" onChange={handleChange} value={values.email} onBlur={ handleBlur} className={!errors.email ? success : haveError}/>
+                                        <p className='mb-4 text-right text-red-400 italic text-sm'>{touched.email && errors.email}</p>
                                     </label>
                                 </div>
 
                                 <div>
-                                <label >
-                                <p>Password</p>
-                                <input type="password" name='password' onChange={(e)=>changePassword(e.target.value), handleChange}  onBlur={handleBlur} value={values.password} className={!errors.password ? success  : haveError }/>
-                                <p className='mb-4 text-right text-red-400 italic text-sm'>{touched.password && errors.password}</p>
-                                </label>
+                                    <label >
+                                        <p>Password</p>
+                                        <div className='relative'>
+                                        <input type={passwordType} name='password' onChange={ handleChange}  onBlur={handleBlur} value={values.password} className={!errors.password ? success  : haveError }/>
+                                            <div className="input-group-btn">
+                                                <button className="absolute top-[12px] right-[3%]" onClick={togglePassword}>
+                                                { passwordType==="password"? <AiIcons.AiOutlineEye/> :<AiIcons.AiOutlineEyeInvisible/> }
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p className='mb-4 text-right text-red-400 italic text-sm'>{touched.password && errors.password}</p>
+                                    </label>
                                 </div>
-                                <input type="submit" onClick={handleSubmit} className='w-96 bg-mainColorTwo font-bold py-2 cursor-pointer' />
-                        </div>
+                                    <input type="submit" onClick={handleSubmit} className='w-96 bg-mainColorTwo font-bold py-2 cursor-pointer' />
+                                </div>
                         </form>
                     )}
                 </Formik>
