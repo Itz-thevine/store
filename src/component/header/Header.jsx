@@ -130,6 +130,7 @@ const Header = () => {
             </div>
 
         </div>
+        {/* mobile */}
         {
                 nav && (
                     <div className='bg-mainColorThree px-6 flex justify-between h-16 item-center  items-center font-bold' style={{visibility: nav}}>
@@ -140,12 +141,21 @@ const Header = () => {
                         </div>
                         <div className='flex  font-medium justify-end items-center md:hidden flex '>
                         
-                            <Link to='/cart'>
+                            <Link to={`/${userID}/cart`}>
                                 <div className='flex text-white justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
                             </Link>
-                            <Link to='/login'>
-                                <Button title='Log In'/>
-                            </Link> 
+                            {
+                                user === null ? (
+                                    <Link to='/login'>
+                                        <Button title='Log In'/>
+                                    </Link> 
+                                    ):(
+                                        <div onClick={logout} className='cursor-pointer'>
+                                            <Button title='Log out' />
+                                        </div>
+                                    
+                                    )
+                            }
                         </div>
                     </div>
                 )
