@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 const SingleProduct = () => {
     let {id} = useParams()
     const name = id
+    console.log(useParams())
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user_id'));
 
@@ -31,11 +32,20 @@ const SingleProduct = () => {
     price = price + size
     console.log(price)
 
+ 
+     let userID = '';
+     if (user !== null) {
+         userID = user.uid
+     } else{
+         userID = 'empty'
+     }
+ 
+
     const dispatch = useDispatch();
     const handleClick = () => {
         if (user !== null) {
             dispatch(addProducts({...pagedata, price}))
-            navigate('/cart')
+            navigate(`/${userID}/cart`)
         } else {
             navigate('/login')            
         }

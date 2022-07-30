@@ -21,7 +21,14 @@ const Header = () => {
 
     //user information
     const user = JSON.parse(localStorage.getItem('user_id'));
-    // console.log(user)
+    // console.log(user.uid)
+
+    let userID = '';
+    if (user !== null) {
+        userID = user.uid
+    } else{
+        userID = 'empty'
+    }
 
    const [drop , setDrop] = useState(false)
 
@@ -65,9 +72,11 @@ const Header = () => {
                     <AiIcons.AiOutlineMenu/>
             </div>
            
-            <div className='text-mainColorTwo text-2xl pl-9 flex items-center font-black w-3/12'>
-                Store
-            </div>
+           <Link to='/store' className='text-mainColorTwo text-2xl pl-9 flex items-center font-black w-3/12'>
+                <div >
+                    Store
+                </div>
+           </Link>
             <div className='w-6/12 flex justify-around items-center hidden md:flex'>
               <Link className='flex justify-center items-center text-white mx-7' to='/'>Home</Link>
               <Link className='flex justify-center items-center text-white mx-7'  to='/About'>About</Link>
@@ -78,7 +87,7 @@ const Header = () => {
               {
                 user === null ? (
                     <>
-                        <Link to='/cart'>
+                        <Link to={`/${userID}/cart`}>
                             <div className='flex text-white justify-center items-center text-2xl mx-7'><AiIcons.AiOutlineShoppingCart/></div>
                         </Link>
                         <Link to='/login' onClick={()=>setDrop(false)}>
@@ -96,12 +105,18 @@ const Header = () => {
                             </div>
                             <div className='flex justify-center items-center text-white text-1xl' onClick={dropped}><AiIcons.AiFillCaretDown/></div>
                             { drop && (
-                                <div className='bg-mainColorTwo px-3 py-2 absolute right-0 top-14 w-32 cursor-pointer   '>
+                                <div className='bg-mainColorTwo px-3 py-2 absolute right-0 top-14 w-auto cursor-pointer   '>
                                     <ul>
-                                        <Link to='/cart' onClick={()=>setDrop(false)}>
+                                        <Link to={`/${userID}/cart`} onClick={()=>setDrop(false)}>
                                             <li className='flex justify-start items-center py-2'>
                                                 <AiIcons.AiOutlineShoppingCart/>
                                                 <p className='ml-4'>Cart</p>   
+                                            </li>
+                                        </Link>
+                                        <Link to={`/${userID}/add-profile-image`} onClick={()=>setDrop(false)}>
+                                            <li className='flex justify-start items-center py-2'>
+                                                <AiIcons.AiFillFileImage/>
+                                                <p className='ml-4'>Edit profile manage</p>   
                                             </li>
                                         </Link>
                                         <li className='flex justify-start items-center py-2' onClick={logout}>

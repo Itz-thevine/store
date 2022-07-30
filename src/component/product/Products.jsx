@@ -126,7 +126,7 @@ const Products = () => {
     }
   
   return (
-    <div className='px-14 md:px-36 bg-green-50 pt-24'>
+    <div className='px-14 md:px-36 bg-green-50 pt-24' id='products'>
         <p className='text-3xl font-bold text-mainColorOne'>Categories</p>
 
         <div className='flex justify-center mt-8'>

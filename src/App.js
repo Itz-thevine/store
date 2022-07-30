@@ -9,6 +9,7 @@ import SignUp from './page/SignUp';
 import Cart from './page/Cart';
 import SingleProduct from './page/SingleProduct';
 import Signed from './page/Signed';
+import AddProfileImage from './page/AddProfileImage';
 
 function App() {
   return (
@@ -17,16 +18,15 @@ function App() {
      <Routes>
        <Route path='/' exact element={<Home/>} />
        <Route path='/:id' exact element={<SingleProduct/>}/>
-       <Route path='/contact' element={<Contact/>}/>
-       <Route path='/login' element={<Login/>}/>
-       <Route path='/signup' element={<SignUp/>}/>
-       <Route path='/about' element={<About/>}/>
+       <Route path='/contact' exact element={<Contact/>}/>
+       <Route path='/login' exact element={<Login/>}/>
+       <Route path='/signup' exact element={<SignUp/>}/>
+       <Route path='/about' exact element={<About/>}/>
        
-       <Route path='/cart' element={<Signed/>}>
-        <Route path='' element={<Cart/>}/>
-        
+       <Route path='/:userID' element={<Signed/>}>
+        <Route path='/:userID/cart' element={<Cart/>}/>
+        <Route path='/:userID/add-profile-image' element={<AddProfileImage/>}/>
        </Route>
-
      </Routes>
     </div>
   );

@@ -8,6 +8,7 @@ import StayWithUs from '../component/stayWithUs/StayWithUs';
 import Button from '../component/button/Button';
 import Footer from '../component/footer/Footer';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 
 const Home = () => {
@@ -51,7 +52,9 @@ const Home = () => {
             </div>
 
             <div className='flex mt-7 items-center'>
-              <Button title='Shop Now'/>
+              <HashLink to='#products'>
+                <Button title='Shop Now'/>
+              </HashLink>
               <Link to='/cart'>
                 <div className='flex text-mainColorOne justify-center items-center text-2xl mx-4'><AiIcons.AiOutlineShoppingCart/></div>
               </Link>
