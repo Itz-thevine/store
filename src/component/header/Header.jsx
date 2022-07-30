@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
@@ -32,8 +32,6 @@ const Header = () => {
 
    const [drop , setDrop] = useState(false)
 
-   console.log(drop)
-
     const dropped = () => {
         setDrop(!drop)
     }
@@ -48,7 +46,7 @@ const Header = () => {
           })
             
         } catch (error) {
-          console.log(error);
+        //   console.log(error);
         }
 
         navigate('/')
@@ -63,7 +61,6 @@ const Header = () => {
         signUserImg = true
       }
 
-    //   console.log(user.photoURL)
 
   return (
      <>
@@ -101,7 +98,7 @@ const Header = () => {
                     <div className='flex justify-center items-center relative'>
                             <p className='text-white'>Welcome! {user.email}</p>
                             <div className='bg-mainColorTwo overflow-hidden mx-3 h-10 w-10 rounded-full flex justify-center items-center text-3xl'>
-                               {signUserImg != false ? (<img src={user.photoURL}  className='w-full h-full'/>) :(<IoIcons.IoIosContact/>)}
+                               {signUserImg !== false ? (<img src={user.photoURL} alt='profile' className='w-full h-full'/>) :(<IoIcons.IoIosContact/>)}
                             </div>
                             <div className='flex justify-center items-center text-white text-1xl' onClick={dropped}><AiIcons.AiFillCaretDown/></div>
                             { drop && (

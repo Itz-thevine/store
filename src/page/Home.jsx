@@ -64,7 +64,7 @@ const Home = () => {
 
 
           <div className='flex flex-1 justify-end py-7'>
-            <img src={data.image} alt="" className='max-w-sm max-h-96 h-auto transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl'/>
+            <img src={data.image} alt="product" className='max-w-sm max-h-96 h-auto transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl'/>
           </div>
       </div> 
 

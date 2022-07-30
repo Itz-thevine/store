@@ -4,7 +4,7 @@ import * as AiIcons from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { Formik } from 'formik'
 import auth from '../firebase'
-import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 const SignUp = () => {
     let success = 'px-3 focus:outline-none focus:border-green-400 border-2 w-96 h-10 pr-16'
@@ -76,7 +76,7 @@ const SignUp = () => {
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         setTimeout(() => {
-                            let authVal = JSON.stringify(values, null, 2);
+                            // let authVal = JSON.stringify(values, null, 2);
                             
                             createUserWithEmailAndPassword(auth, values.email, values.password).then((res)=>{
                                 const user = JSON.parse(localStorage.getItem('user_id'));

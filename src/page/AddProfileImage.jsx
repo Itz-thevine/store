@@ -1,32 +1,18 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import auth from '../firebase'
 import { storage } from '../firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { updateProfile } from 'firebase/auth'
 
 const AddProfileImage = () => {
     const [photoBinary, setPhotoBinary] = useState(null);
-    const [photoURL, setPhotoURL] = useState(null);
     const [loading, setLoading] = useState(false);
 
     // redirection
     const navigate = useNavigate()
 
-    auth.onAuthStateChanged(user=>{
-        localStorage.setItem('user_id', JSON.stringify(user))
-    })
-
     const user = JSON.parse(localStorage.getItem('user_id'));
-    //  console.log(user.providerData[0])
-
-     useEffect(() => {
-        setPhotoURL(user.uid)
-       
-     }, [user])
-     
-
     
 
     //  upload image
@@ -35,21 +21,27 @@ const AddProfileImage = () => {
         
         setLoading(true)    
 
-        const snapshot = await uploadBytes(fileRef, file)
+        await uploadBytes(fileRef, file)
         const PhotoUrl = await getDownloadURL(fileRef)
-        updateProfile(auth.currentUser, {
-             photoURL
+
+        updateProfile(currentUser, {
+             PhotoUrl
           }).then((res) => {
-            console.log(res)
+            // console.log(res)
           }).catch((error) => {
-            console.log(error)
+            // console.log(error)
           })
 
      
         setLoading(false)
-        console.log(PhotoUrl)
-        console.log(currentUser.providerData)
-        // navigate('/')
+        // console.log(PhotoUrl)
+        // console.log(currentUser.photoURL)
+       
+        
+        currentUser.photoURL = PhotoUrl;
+
+        localStorage.setItem("user_id", JSON.stringify(currentUser));
+         navigate('/')
     }
     // handle the image change
     const handleImgChange = (e) => {
@@ -63,6 +55,10 @@ const AddProfileImage = () => {
     const handleImgClick = () => {
         upload(photoBinary, user, setLoading)
     }
+
+    
+    
+    
 
   return (
     <div>

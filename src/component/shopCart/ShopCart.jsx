@@ -39,7 +39,8 @@ const ShopCart = () => {
 
     useEffect(() => {
         dispatch(increQuantity({...cart, quantity, total}))
-     
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [quantity])
     
 
@@ -98,7 +99,7 @@ const ShopCart = () => {
                     <td>
                     <div className='flex justify-start flex-col md:flex-row md:items-center'>
                         <div>
-                            <img src={d.image} alt="" className='h-auto w-20 md:w-36 my-3' />
+                            <img src={d.image} alt="cart" className='h-auto w-20 md:w-36 my-3' />
                         </div>
                         <div className='flex  flex-col my-3 md:ml-5'>
                             <p className='font-bold text-lg md:text-xl mb-2'>{d.title}</p>

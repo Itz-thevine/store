@@ -11,26 +11,28 @@ import { useNavigate } from 'react-router-dom'
 const SingleProduct = () => {
     let {id} = useParams()
     const name = id
-    console.log(useParams())
+    // console.log(useParams())
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user_id'));
 
     const[pagedata, setPagedata] = useState([])
     const[size, setSize] = useState(1)
     
-
     useEffect(() => {
+       
         axios.get(`https://fakestoreapi.com/products/${name}`).then(
             (res)=>{
                 setPagedata(res.data)
             }
         )
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
     let price =  pagedata.price
     price = price + size
-    console.log(price)
+    // console.log(price)
 
  
      let userID = '';
@@ -62,7 +64,7 @@ const SingleProduct = () => {
   return (
     <div className='flex flex-col md:flex-row flex-wrap items-center py-10 md:px-24'>
         <div className='flex flex-auto my-10 md:my-0 w-7/12 md:w-4/12'>
-            <img src={pagedata.image} alt="" className='md:w-10/12' />
+            <img src={pagedata.image} alt="product" className='md:w-10/12' />
         </div>
         <div className='flex flex-auto flex-col w-9/12 md:w-8/12 md:pl-8'>
             <p className='text-2xl font-bold'>{pagedata.title}</p>
